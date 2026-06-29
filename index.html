@@ -256,15 +256,11 @@ function init(){renderGrid();renderHomeHistory();parseHash()}
 function renderGrid(){
   var grid=document.getElementById('tourGrid');
   var html='<div class="tour-card" data-action="explore"><div class="tour-card-emoji">\u{1F30D}</div><div class="tour-card-title">自由探索</div><div class="tour-card-sub">在地图上自己逛</div><div class="tour-card-stops">搜索 · 拖拽 · 漫步</div></div>';
-  html+='<div class="tour-card" data-action="tours"><div class="tour-card-emoji">\u{1F6A9}</div><div class="tour-card-title">路线</div><div class="tour-card-sub">跟着走一遍</div><div class="tour-card-stops">'+tours.length+' 条路线</div></div>';
   html+='<div class="tour-card" data-action="geoguessr"><div class="tour-card-emoji">\u{1F50D}</div><div class="tour-card-title">图寻</div><div class="tour-card-sub">你在哪？</div><div class="tour-card-stops">地标 · 荒野 · 连战</div></div>';
-  html+='<div class="tour-card" data-action="somewhere"><div class="tour-card-emoji">\u{1F48C}</div><div class="tour-card-title">带你去个地方</div><div class="tour-card-sub">我的私藏坐标 一次一个</div><div class="tour-card-stops">'+places.length+' 个地方 · 都想带你看</div></div>';
   html+='<div class="tour-card" data-action="history"><div class="tour-card-emoji">\u{1F4CD}</div><div class="tour-card-title">历史足迹</div><div class="tour-card-sub">去过的地方</div><div class="tour-card-stops" id="historyCount">加载中...</div></div>';
   grid.innerHTML=html;
   grid.querySelector('[data-action="explore"]').addEventListener('click',function(){startExplore()});
-  grid.querySelector('[data-action="tours"]').addEventListener('click',function(){renderTourList()});
   grid.querySelector('[data-action="geoguessr"]').addEventListener('click',function(){startGeoGuessr()});
-  grid.querySelector('[data-action="somewhere"]').addEventListener('click',function(){takeMeSomewhere()});
   grid.querySelector('[data-action="history"]').addEventListener('click',function(){renderHistoryList()});
 }
 function renderTourList(){
