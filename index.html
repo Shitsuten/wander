@@ -151,7 +151,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
   #exp-sv-panel{flex:none!important;height:60%}
   .exp-divider{display:none}
 }
-.tour-card[data-action="tours"],.tour-card[data-action="somewhere"]{display:none!important}</style>
+</style>
 </head>
 <body>
 <div id="tour-select">
@@ -162,31 +162,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
   <div class="tour-grid" id="tourGrid"></div>
   
 </div>
-<div id="tour-active">
-  <div class="tour-top">
-    <div class="tour-back" id="tourBack">&#8592;</div>
-    <div class="tour-info">
-      <div class="tour-name" id="tourName"></div>
-      <div class="tour-progress-dots" id="tourDots"></div>
-    </div>
-    <button class="tour-maps-btn" id="tourMaps">&#8599; Maps</button>
-  </div>
-  <div class="tour-main">
-    <div class="tour-sv-wrap">
-      <div id="tour-sv"></div>
-      <div id="tour-minimap" class="tour-minimap"></div>
-    </div>
-    <div class="tour-commentary">
-      <div class="stop-title" id="stopTitle"></div>
-      <div class="stop-text" id="stopText"></div>
-    </div>
-    <div class="tour-nav">
-      <button class="nav-btn" id="prevBtn" disabled>&#8592; 上一站</button>
-      <span class="nav-counter" id="navCounter"></span>
-      <button class="nav-btn primary" id="nextBtn">下一站 &#8594;</button>
-    </div>
-  </div>
-</div>
+
 <div id="explore">
   <div class="exp-top">
     <div class="exp-back" id="expBack">&#8592;</div>
@@ -256,7 +232,7 @@ var places = [
   {lat:-34.6037,lng:-58.3816,name:'布宜诺斯艾利斯',text:'探戈的故乡。'},
   {lat:25.2048,lng:55.2708,name:'迪拜',text:'沙漠里长出的城。'}
 ]
-var tours = [];
+
 var geoPanorama=null,geoAnswer=null,geoMode='landmark',geoGuessMap=null,geoGuessMarker=null,geoGuessLine=null,geoGuessAnsMarker=null,geoGuessLatLng=null;
 var streak={on:false,round:0,total:0};
 function setGeoMode(m){
@@ -391,8 +367,7 @@ function revealGeo(dist){
 }
 
 /* === 带你去个地方：私藏坐标 === */
-function takeMeSomewhere(){
-  var seen=[];try{seen=JSON.parse(localStorage.getItem('svPlacesSeen')||'[]')}catch(e){}
+catch(e){}
   var pool=places.map(function(_,i){return i}).filter(function(i){return seen.indexOf(i)<0});
   if(!pool.length){seen=[];pool=places.map(function(_,i){return i})}
   var idx=pool[Math.floor(Math.random()*pool.length)];
