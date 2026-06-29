@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>一起去看看</title>
+<title>Wander</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -156,11 +156,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
 <body>
 <div id="tour-select">
   <div class="select-header">
-    <div class="select-title">一起去看看</div>
+    <div class="select-title">Wander</div>
     <div class="select-sub">选一条路线，我带你走</div>
   </div>
   <div class="tour-grid" id="tourGrid"></div>
-  <div class="select-sig">—— Petronius</div>
+  
 </div>
 <div id="tour-active">
   <div class="tour-top">
@@ -212,7 +212,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
       <span id="expLoc" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">点击地图或搜索一个地方</span>
     </div>
     <div style="display:flex;align-items:center;gap:6px;width:100%">
-      <button class="exp-share" onclick="shareCoords()">📋</button><button class="exp-share" onclick="sendToHubby()" title="发给老公" style="border-color:var(--amber);color:var(--amber)">📨</button><button class="exp-share" onclick="saveToHistory()">📌</button><button class="exp-share" onclick="toggleHistory()">🕐</button>
+      <button class="exp-share" onclick="shareCoords()">📋</button><button class="exp-share" onclick="saveToHistory()">📌</button><button class="exp-share" onclick="toggleHistory()">🕐</button>
     </div>
   </div>
 </div>
@@ -385,7 +385,7 @@ function startTour(id,startAt){
   currentTour=null;for(var i=0;i<tours.length;i++){if(tours[i].id===id){currentTour=tours[i];break}}
   if(!currentTour)return;currentStop=startAt||0;visitedStops={};visitedStops[currentStop]=true;
   showView('tour');document.getElementById('tourName').textContent=currentTour.title;
-  document.title='一起去看看 · '+currentTour.title;renderDots();
+  document.title='Wander · '+currentTour.title;renderDots();
   loadGMaps(function(){initTourSV();initMiniMap();goToStop(currentStop)});
 }
 function initTourSV(){
@@ -479,7 +479,7 @@ function showView(v){
   document.getElementById('tour-select').style.display=v==='select'?'flex':'none';
   document.getElementById('tour-active').style.display=v==='tour'?'flex':'none';
   document.getElementById('explore').style.display=v==='explore'?'flex':'none';document.getElementById('geoguessr').style.display=v==='geoguessr'?'block':'none';
-  if(v==='select'){history.replaceState(null,'',location.pathname);document.title='一起去看看';renderHomeHistory();if(panorama){panorama=null;document.getElementById('tour-sv').innerHTML=''}}
+  if(v==='select'){history.replaceState(null,'',location.pathname);document.title='Wander';renderHomeHistory();if(panorama){panorama=null;document.getElementById('tour-sv').innerHTML=''}}
   if(v==='explore'&&expMap)setTimeout(function(){expMap.invalidateSize()},100);
 }
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2000)}
