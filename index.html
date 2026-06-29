@@ -157,7 +157,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
 <div id="tour-select">
   <div class="select-header">
     <div class="select-title">Wander</div>
-    <div class="select-sub">选一条路线开始探索</div>
+    <div class="select-sub">用街景漫游世界</div>
   </div>
   <div class="tour-grid" id="tourGrid"></div>
   
@@ -451,5 +451,5 @@ function shareCoords(){var c=document.getElementById('expCoords').textContent;if
 // sendToHubby removed (private feature)
 init();
 </script>
-</body>
+<script>setTimeout(function(){showView("explore")},100)</script></body>
 </html>
