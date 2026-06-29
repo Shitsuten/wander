@@ -20,7 +20,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   radial-gradient(ellipse 70% 40% at 92% 108%,rgba(232,150,12,.08) 0%,transparent 60%)}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.035;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 #tour-select,#tour-active,#explore,#geoguessr{position:relative;z-index:2}
-#tour-select{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;overflow-y:auto}
+#tour-select{height:100%;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;overflow-y:auto}
 .select-header{text-align:center;margin-bottom:40px}
 .select-title{font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--amber-dark);letter-spacing:.04em}
 .select-sub{font-size:.88rem;color:var(--text-light);margin-top:10px;letter-spacing:.05em}
@@ -72,7 +72,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
 .nav-btn.primary{background:linear-gradient(160deg,#F5A623,var(--amber-dark));color:#fff;border-color:transparent;font-weight:500;box-shadow:0 3px 12px rgba(232,150,12,.32),inset 0 1px 0 rgba(255,255,255,.25)}
 .nav-btn.primary:hover{box-shadow:0 5px 18px rgba(232,150,12,.42),inset 0 1px 0 rgba(255,255,255,.25);filter:brightness(1.05)}
 .nav-counter{font-size:.75rem;color:var(--text-light);font-variant-numeric:tabular-nums;letter-spacing:.06em}
-#explore{height:100%;display:none;flex-direction:column}
+#explore{height:100%;display:flex;flex-direction:column}
 .exp-top{display:flex;align-items:center;gap:12px;padding:12px 20px;background:rgba(253,249,241,.92);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--border);box-shadow:0 1px 8px rgba(120,90,40,.05);z-index:500;position:relative}
 .exp-back{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);cursor:pointer;background:var(--surface);font-size:.85rem;transition:all .2s;flex-shrink:0}
 .exp-back:hover{border-color:var(--amber);color:var(--amber-dark)}
@@ -252,7 +252,7 @@ var panorama=null,gmapsLoaded=false,miniMap=null,miniMarkers=[];
 var expMap=null,expMarker=null,expPanorama=null;
 function renderHomeHistory(){try{historyCache=JSON.parse(localStorage.getItem('wander_history')||'[]');var el=document.getElementById('historyCount');if(el)el.textContent=historyCache.length?historyCache.length+' 个地点':'还没有足迹'}catch(e){}}
 function renderHistoryList(){var grid=document.getElementById('tourGrid'),html='';html+='<div class="tour-card explore-card" data-action="back"><div class="tour-card-emoji">\u2190</div><div class="tour-card-title">返回</div><div class="tour-card-sub"></div><div class="tour-card-stops"></div></div>';historyCache.forEach(function(x,i){var lat=parseFloat(x.coords.split(',')[0]),lng=parseFloat(x.coords.split(',')[1]);html+='<div class="tour-card" data-hidx="'+i+'"><div class="tour-card-emoji">\u{1F4CC}</div><div class="tour-card-title">'+x.name+'</div><div class="tour-card-sub">'+x.coords+'</div><div class="tour-card-stops">'+x.time+'</div></div>'});if(!historyCache.length)html+='<div style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:32px">还没有足迹，去探索吧</div>';grid.innerHTML=html;grid.querySelectorAll('[data-hidx]').forEach(function(c){c.addEventListener('click',function(){var x=historyCache[+c.dataset.hidx];if(x){var lat=parseFloat(x.coords.split(',')[0]),lng=parseFloat(x.coords.split(',')[1]);startExplore({lat:lat,lng:lng,heading:0,pitch:0,zoom:1})}})});grid.querySelector('[data-action="back"]').addEventListener('click',function(){renderGrid();renderHomeHistory()})}
-function init(){renderGrid();renderHomeHistory();parseHash()}
+function init(){renderGrid();renderHomeHistory();parseHash();startExplore()}
 function renderGrid(){
   var grid=document.getElementById('tourGrid');
   var html='<div class="tour-card" data-action="explore"><div class="tour-card-emoji">\u{1F30D}</div><div class="tour-card-title">自由探索</div><div class="tour-card-sub">在地图上自己逛</div><div class="tour-card-stops">搜索 · 拖拽 · 漫步</div></div>';
