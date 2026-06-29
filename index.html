@@ -213,7 +213,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
       <span id="expLoc" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">点击地图或搜索一个地方</span>
     </div>
     <div style="display:flex;align-items:center;gap:6px;width:100%">
-      <button class="exp-share" onclick="shareCoords()">📋</button><button class="exp-share" onclick="saveToHistory()">📌</button><button class="exp-share" onclick="toggleHistory()">🕐</button>
+      <button class="exp-share" onclick="shareCoords()">📋</button><button class="exp-share" onclick="shareCoords()">📋</button><button class="exp-share" onclick="sendSnapshot()" title="发送">📨</button><button class="exp-share" onclick="saveToHistory()">📌</button><button class="exp-share" onclick="toggleHistory()">🕐</button>
     </div>
   </div>
 </div>
@@ -607,7 +607,7 @@ function renderHistory(){var el=document.getElementById('expHistory');var h=hist
 function goHistory(i){if(!historyCache[i])return;var p=historyCache[i].coords.split(',');expMoveTo(+p[0],+p[1]);expMap.setZoom(14);document.getElementById('expHistory').classList.remove('show')}
 function delHistory(i){if(!confirm('删除？'))return;historyCache.splice(i,1);localStorage.setItem('wander_history',JSON.stringify(historyCache));showToast('已删除');renderHistory();renderHomeHistory()}
 function shareCoords(){var c=document.getElementById('expCoords').textContent;if(!c||c==='—')return showToast('还没有坐标');navigator.clipboard.writeText(c).then(function(){showToast('已复制: '+c)}).catch(function(){showToast('复制失败')})}
-// removed))};img.onerror=function(){showToast("截图失败")};img.src=imgUrl}
+function sendSnapshot(){showToast("请在代码中配置你的发送接口")}))};img.onerror=function(){showToast("截图失败")};img.src=imgUrl}
 init();
 </script>
 </body>
