@@ -151,7 +151,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opac
   #exp-sv-panel{flex:none!important;height:60%}
   .exp-divider{display:none}
 }
-</style>
+.tour-card[data-action="tours"],.tour-card[data-action="somewhere"]{display:none!important}</style>
 </head>
 <body>
 <div id="tour-select">
@@ -451,5 +451,5 @@ function shareCoords(){var c=document.getElementById('expCoords').textContent;if
 // sendToHubby removed (private feature)
 init();
 </script>
-<script>window.addEventListener("load",function(){setTimeout(function(){showView("explore")},500)})</script></body>
+</body>
 </html>
